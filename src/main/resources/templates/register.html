@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Đăng Ký</title>
+</head>
+<body>
+<h1>Đăng Ký</h1>
+<form th:action="@{/register}" method="post" th:object="${user}">
+    <p>Họ và tên: <input type="text" th:field="*{fullName}" /></p>
+    <p>Email: <input type="email" th:field="*{email}" /></p>
+    <p>Mật khẩu: <input type="password" th:field="*{password}" /></p>
+    <p>Số điện thoại: <input type="text" th:field="*{phoneNumber}" /></p>
+    <p>Địa chỉ: <input type="text" th:field="*{address}" /></p>
+    <button type="submit">Đăng Ký</button>
+</form>
+<p th:text="${error}"></p>
+</body>
+</html>

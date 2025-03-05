@@ -11,9 +11,9 @@ public class HomeController {
         return "home"; // Trả về file home.html
     }
 
-    @GetMapping("/products")
+    @GetMapping("/home-products")
     public String products() {
-        return "products"; // Trả về file products.html
+        return "products";  // trả về view tên là "products.html"
     }
 
     @GetMapping("/orders")

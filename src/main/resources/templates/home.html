@@ -1,85 +1,184 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ | FoodStore</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <!-- Thanh điều hướng -->
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <a href="home.html">FoodStore</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="home.html">Trang chủ</a></li>
-                    <li><a href="products.html">Sản phẩm</a></li>
-                    <li><a href="about.html">Giới thiệu</a></li>
-                    <li><a href="contact.html">Liên hệ</a></li>
-                    <li><a href="cart.html">Giỏ hàng</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Banner -->
-    <section class="banner">
-        <img src="https://via.placeholder.com/1500x600/FF6347/FFFFFF?text=FoodStore+Mới+nhất" alt="Banner">
-    </section>
-
-    <!-- Danh mục sản phẩm -->
-    <section class="categories">
-        <h2>Sản phẩm</h2>
-        <div class="category-list">
-            <div class="category-item">
-                <img src="https://thucphamsach.vn/wp-content/uploads/2021/07/Khoai-mon-le-pho-400x272-c-default.jpg" alt="Khoai môn lê phố">
-                <h3>Khoai môn lê phố</h3>
-            </div>
-            <div class="category-item">
-                <img src="https://thucphamsach.vn/wp-content/uploads/2021/07/ca-trung-400x272-c-default.jpg" alt="Cá trứng">
-                <h3>Cá trứng</h3>
-            </div>
-            <div class="category-item">
-                <img src="https://thucphamsach.vn/wp-content/uploads/2021/07/gio-thu-chay-400x272-c-default.jpg" alt="Giò thủ chay">
-                <h3>Giò thủ chay</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sản phẩm nổi bật -->
-    <section class="featured-products">
-        <h2>Sản phẩm nổi bật</h2>
-        <div class="product-list">
-            <div class="product-item">
-                <img src="https://images.unsplash.com/photo-1583337909290-f15c7e0db19f?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjAwMjF8MHxwaG90by1wYWdlfHx8fHx8fHwxNjg4NjA1Mzg5&ixlib=rb-1.2.1&q=80&w=1080" alt="Sản phẩm 1">
-                <h3>Sản phẩm 1</h3>
-                <p>Giá: 100,000 VND</p>
-                <button>Thêm vào giỏ</button>
-            </div>
-            <div class="product-item">
-                <img src="https://images.unsplash.com/photo-1619602213155-dab8a2b23030?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjAwMjF8MHxwaG90by1wYWdlfHx8fHx8fHwxNjg4NjA1Mzg5&ixlib=rb-1.2.1&q=80&w=1080" alt="Sản phẩm 2">
-                <h3>Sản phẩm 2</h3>
-                <p>Giá: 200,000 VND</p>
-                <button>Thêm vào giỏ</button>
-            </div>
-            <div class="product-item">
-                <img src="https://images.unsplash.com/photo-1619603778321-dfe9b3ec4f60?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjAwMjF8MHxwaG90by1wYWdlfHx8fHx8fHwxNjg4NjA1Mzg5&ixlib=rb-1.2.1&q=80&w=1080" alt="Sản phẩm 3">
-                <h3>Sản phẩm 3</h3>
-                <p>Giá: 150,000 VND</p>
-                <button>Thêm vào giỏ</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 FoodStore - Tất cả quyền lợi được bảo lưu.</p>
-    </footer>
-</body>
-
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Product Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="font-sans">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-200">
+   <div class="container mx-auto flex justify-between items-center py-4 px-6">
+    <div class="flex items-center space-x-4">
+     <a class="text-gray-600" href="#">
+      Trang Chủ
+     </a>
+     <a class="text-gray-600" href="#">
+      Sản Phẩm
+     </a>
+     <a class="text-gray-600" href="#">
+      Dịch Vụ
+     </a>
+     <a class="text-gray-600" href="#">
+      Liên Hệ
+     </a>
+    </div>
+    <div class="flex items-center space-x-4">
+     <a class="text-gray-600" href="/login">
+      Đăng Nhập
+     </a>
+     <a class="text-gray-600" href="/register">
+      Đăng Ký
+     </a>
+     <a class="text-gray-600" href="#">
+      Giỏ Hàng
+     </a>
+     <a class="text-gray-600" href="#">
+      Kiểm Tra Đơn Hàng
+     </a>
+     <div class="relative">
+      <input class="border border-gray-300 rounded-full py-2 px-4" placeholder="Tìm kiếm..." type="text"/>
+      <button class="absolute right-0 top-0 mt-2 mr-4 text-green-500">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- Main Content -->
+  <main>
+   <!-- Section 1 -->
+   <section class="bg-green-100 py-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+     <div class="md:w-1/2 text-center md:text-left">
+      <div class="text-yellow-500 text-lg mb-2">
+       ★★★★★ 237 Reviews
+      </div>
+      <h2 class="text-3xl font-bold mb-4">
+       BỘT LÀM KEM TƯƠI VỊ MATCHA
+      </h2>
+      <p class="text-gray-700 mb-4">
+       Bột làm kem ThuPham.com là một sản phẩm chất lượng cao, được sản xuất với tiêu chuẩn hàng đầu. Hương vị matcha thơm ngon, đậm đà.
+      </p>
+      <div class="flex justify-center md:justify-start space-x-4 mb-4">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-leaf text-green-500">
+        </i>
+        <span>
+         100% Natural
+        </span>
+       </div>
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-clock text-green-500">
+        </i>
+        <span>
+         24/7 Support
+        </span>
+       </div>
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-shield-alt text-green-500">
+        </i>
+        <span>
+         Secure Payment
+        </span>
+       </div>
+      </div>
+      <button class="bg-green-500 text-white py-2 px-4 rounded-full">
+       Mua Ngay
+      </button>
+     </div>
+     <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+      <img alt="Product image of Matcha flavored ice cream powder with a cone of matcha ice cream and leaves around it" height="400" src="https://storage.googleapis.com/a1aa/image/6cslobj8Tt7n5aCdB2ivbW7Nsd4Avq4bVP1CBgQs3ew.jpg" width="300"/>
+     </div>
+    </div>
+   </section>
+   <!-- Section 2 -->
+   <section class="bg-white py-16">
+    <div class="container mx-auto text-center">
+     <h3 class="text-2xl font-bold mb-8">
+      Các Sản Phẩm
+     </h3>
+     <div class="flex justify-center space-x-8">
+      <div class="text-center">
+       <img alt="Product image of Matcha flavored ice cream powder" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/ICkX9IsK76NlJLTG20DXj7IecGRhZOxIW93NT-yGD1g.jpg" width="100"/>
+       <h4 class="font-bold">
+        BỘT LÀM KEM TƯƠI
+       </h4>
+       <p class="text-gray-600">
+        Vị Matcha
+       </p>
+      </div>
+      <div class="text-center">
+       <img alt="Product image of Milk flavored ice cream powder" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/FknNC9U_p3K03kz4qiL0UqnHHiirekAT3zpNFuxvHwM.jpg" width="100"/>
+       <h4 class="font-bold">
+        MILK POWDER
+       </h4>
+       <p class="text-gray-600">
+        Vị Sữa
+       </p>
+      </div>
+      <div class="text-center">
+       <img alt="Product image of Chocolate flavored ice cream powder" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/1bHLZgZyAhUK-SzOLqUTv3TLMIj1dvd_r9eLZoFOX4g.jpg" width="100"/>
+       <h4 class="font-bold">
+        CỐC GIẤY
+       </h4>
+       <p class="text-gray-600">
+        Vị Chocolate
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- Section 3 -->
+   <section class="bg-pink-100 py-16">
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+     <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+      <img alt="Product image of Strawberry flavored ice cream powder with a cone of strawberry ice cream and a lemon slice" height="400" src="https://storage.googleapis.com/a1aa/image/cvCDT0SCEBT66SO-m5yr3Ws-hsiP39NVHCuAQRmGUkM.jpg" width="300"/>
+     </div>
+     <div class="md:w-1/2 text-center md:text-left">
+      <h2 class="text-3xl font-bold mb-4">
+       BỘT LÀM KEM TƯƠI
+      </h2>
+      <h3 class="text-2xl font-bold mb-4">
+       23 VỊ KEM
+      </h3>
+      <p class="text-gray-700 mb-4">
+       ThuPham.com cung cấp đa dạng các loại bột làm kem với hương vị phong phú, từ các loại trái cây tươi ngon đến các hương vị truyền thống.
+      </p>
+      <div class="flex justify-center md:justify-start space-x-4 mb-4">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-leaf text-green-500">
+        </i>
+        <span>
+         100% Natural
+        </span>
+       </div>
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-clock text-green-500">
+        </i>
+        <span>
+         24/7 Support
+        </span>
+       </div>
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-shield-alt text-green-500">
+        </i>
+        <span>
+         Secure Payment
+        </span>
+       </div>
+      </div>
+      <button class="bg-pink-500 text-white py-2 px-4 rounded-full">
+       Mua Ngay
+      </button>
+     </div>
+    </div>
+   </section>
+  </main>
+ </body>
 </html>

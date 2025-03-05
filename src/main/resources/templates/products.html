@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cửa hàng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+   <div class="flex">
+    <!-- Sidebar -->
+    <div class="w-1/4 p-4 bg-white shadow-md">
+     <h2 class="text-xl font-bold mb-4">Cửa hàng</h2>
+     <div class="mb-4">
+      <h3 class="font-semibold mb-2">DANH MỤC SẢN PHẨM</h3>
+      <ul>
+       <li><input class="mr-2" type="checkbox" id="category1"/><label for="category1">Bột làm kem, thạch, chè</label></li>
+       <li><input class="mr-2" type="checkbox" id="category2"/><label for="category2">Bột Nước uống Nước Công Nghiệp</label></li>
+       <li><input class="mr-2" type="checkbox" id="category3"/><label for="category3">Bột Nước uống Pha Chế</label></li>
+       <li><input class="mr-2" type="checkbox" id="category4"/><label for="category4">Thiết bị làm bánh</label></li>
+       <!-- Các danh mục khác -->
+      </ul>
+     </div>
+     <div class="mb-4">
+      <h3 class="font-semibold mb-2">THƯƠNG HIỆU</h3>
+      <ul>
+       <li><input class="mr-2" type="checkbox" id="brand1"/><label for="brand1">Angelina</label></li>
+       <li><input class="mr-2" type="checkbox" id="brand2"/><label for="brand2">Anny</label></li>
+       <!-- Các thương hiệu khác -->
+      </ul>
+     </div>
+     <div class="mb-4">
+      <h3 class="font-semibold mb-2">XUẤT XỨ</h3>
+      <ul>
+       <li><input class="mr-2" type="checkbox" id="origin1"/><label for="origin1">Italy</label></li>
+       <li><input class="mr-2" type="checkbox" id="origin2"/><label for="origin2">Korea</label></li>
+       <!-- Các quốc gia xuất xứ khác -->
+      </ul>
+     </div>
+     <div class="mb-4">
+      <h3 class="font-semibold mb-2">GIÁ</h3>
+      <input class="w-full" max="1000" min="0" type="range"/>
+     </div>
+    </div>
+    <!-- Main Content -->
+    <div class="w-3/4 p-4">
+     <div class="flex justify-between items-center mb-4">
+      <span>Hiển thị 1–24 của 648 kết quả</span>
+     </div>
+     <div class="grid grid-cols-4 gap-4" id="product-list">
+      <!-- Product Item (will be dynamically inserted here) -->
+     </div>
+     <div class="flex justify-center mt-4">
+      <ul class="flex space-x-2">
+       <li><a class="px-2 py-1 border" href="#">1</a></li>
+       <li><a class="px-2 py-1 border" href="#">2</a></li>
+       <li><a class="px-2 py-1 border" href="#">3</a></li>
+       <!-- Các trang khác -->
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    fetch('/api/products')  // Gọi API từ backend
+        .then(response => response.json())  // Chuyển đổi dữ liệu từ JSON
+        .then(data => {
+            const productList = document.getElementById("product-list");
+            data.forEach(product => {
+                let productItem = document.createElement("div");
+                productItem.classList.add("bg-white", "p-4", "shadow-md");
+                productItem.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-40 object-cover mb-2" />
+                    <h3 class="text-sm font-semibold">${product.name}</h3>
+                    <p class="text-red-500">${product.price} đ</p>
+                `;
+                productList.appendChild(productItem);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
+</script>
+
+ </body>
+</html>
