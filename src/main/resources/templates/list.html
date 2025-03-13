@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Danh Sách Đơn Hàng</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+
+        table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .action-buttons a {
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .action-buttons a:hover {
+            background-color: #45a049;
+        }
+
+        .create-button {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .create-button a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .create-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Danh Sách Đơn Hàng</h1>
+<div class="create-button">
+    <a href="/admin/orders/create">Tạo Đơn Hàng Mới</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Người Dùng</th>
+            <th>Trạng Thái</th>
+            <th>Tổng Tiền</th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.user.fullName}"></td>
+            <td th:text="${order.status}"></td>
+            <td th:text="${order.total}"></td>
+            <td class="action-buttons">
+                <a th:href="@{/admin/orders/{id}/edit(id=${order.orderId})}">Sửa</a>
+                <a th:href="@{/admin/orders/{id}/delete(id=${order.orderId})}">Xóa</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

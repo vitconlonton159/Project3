@@ -34,6 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Loop over the products -->
                         <tr th:each="product : ${products}">
                             <td class="border px-4 py-2">
                                 <img th:src="${product.imageUrl}" alt="Hình ảnh sản phẩm" class="w-20 h-20 object-cover"/>
@@ -42,22 +43,11 @@
                             <td class="border px-4 py-2" th:text="${product.description}"></td>
                             <td class="border px-4 py-2" th:text="${product.price}"></td>
                             <td class="border px-4 py-2">
-                                <a href="/admin/product/edit/{id}" class="bg-yellow-500 text-white p-2 rounded">Sửa</a>
-                                <a href="/admin/product/delete/{id}" class="bg-red-500 text-white p-2 rounded">Xóa</a>
+                                <!-- Links for editing and deleting -->
+                                <a th:href="@{/admin/product/edit/{id}(id=${product.productId})}" class="bg-yellow-500 text-white p-2 rounded">Sửa</a>
+                                <a th:href="@{/admin/product/delete/{id}(id=${product.productId})}" class="bg-red-500 text-white p-2 rounded">Xóa</a>
                             </td>
                         </tr>
-                        <tr th:each="product : ${products}">
-    <td class="border px-4 py-2">
-        <img th:src="${product.imageUrl}" alt="Product Image" width="50" height="50"/>
-        <span th:text="${product.name}"></span>
-    </td>
-    <td class="border px-4 py-2" th:text="${product.description}"></td>
-    <td class="border px-4 py-2" th:text="${product.price}"></td>
-    <td class="border px-4 py-2">
-        <a th:href="@{/admin/product/edit/{id}(id=${product.productId})}" class="bg-yellow-500 text-white p-2 rounded">Sửa</a>
-        <a th:href="@{/admin/product/delete/{id}(id=${product.productId})}" class="bg-red-500 text-white p-2 rounded">Xóa</a>
-    </td>
-</tr>
                     </tbody>
                 </table>
             </div>

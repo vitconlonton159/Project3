@@ -1,74 +1,68 @@
 package com.foodstore.controller;
 
-import com.foodstore.model.User;
-import com.foodstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import com.foodstore.model.User;
+import com.foodstore.service.UserService;
 
 @Controller
-@RequestMapping("/admin/user")
+@RequestMapping("/admin/users")
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     // Hiển thị danh sách người dùng
-    @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
-        List<User> users = userRepository.findAll(); // Lấy tất cả người dùng từ CSDL
-        model.addAttribute("users", users); // Truyền danh sách người dùng cho view
-        return "users"; // Trả về trang users.html
+    @GetMapping
+    public String listUsers(Model model) {
+        // Đảm bảo thêm kiểu danh sách người dùng vào model
+        model.addAttribute("users", userService.getAllUsers());
+        return "adminUser/userList";  // Tên file view sẽ là adminUser/userList
     }
 
-    // Hiển thị form thêm người dùng
-    @GetMapping("/add")
-    public String showAddForm() {
-        return "add_user"; // Trả về trang add_user.html
+    // Hiển thị form tạo người dùng
+    @GetMapping("/create")
+    public String createUserForm(Model model) {
+        // Tạo một đối tượng User mới và truyền vào form
+        model.addAttribute("user", new User());
+        return "adminUser/create";  // Tên file view là adminUser/create
     }
 
-    // Thêm người dùng mới
-    @PostMapping("/add")
-    public String addUser(@RequestParam String fullName, 
-                          @RequestParam String email, 
-                          @RequestParam String password, 
-                          @RequestParam String phoneNumber) {
-        User user = new User(fullName, email, password, phoneNumber);
-        userRepository.save(user); // Lưu người dùng vào cơ sở dữ liệu
-        return "redirect:/admin/user/dashboard"; // Chuyển hướng về dashboard
+    // Xử lý tạo người dùng
+    @PostMapping("/create")
+    public String createUser(@ModelAttribute User user) {
+        userService.createUser(user);  // Lưu người dùng vào database
+        return "redirect:/admin/users";  // Quay lại danh sách người dùng
     }
 
-    // Sửa thông tin người dùng
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Người dùng không tồn tại"));
-        model.addAttribute("user", user);
-        return "edit_user"; // Trả về trang edit_user.html
+    // Hiển thị form chỉnh sửa người dùng
+    @GetMapping("/{id}/edit")
+    public String editUserForm(@PathVariable Long id, Model model) {
+        // Lấy thông tin người dùng theo ID
+        model.addAttribute("user", userService.getUserById(id).orElse(null));
+        return "adminUser/edit";  // Tên file view là adminUser/edit
     }
 
-    // Sửa thông tin người dùng
-    @PostMapping("/edit/{id}")
-    public String updateUser(@PathVariable Long id, 
-                             @RequestParam String fullName, 
-                             @RequestParam String email, 
-                             @RequestParam String password, 
-                             @RequestParam String phoneNumber) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Người dùng không tồn tại"));
-        user.setFullName(fullName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setPhoneNumber(phoneNumber);
-        userRepository.save(user); // Cập nhật người dùng vào cơ sở dữ liệu
-        return "redirect:/admin/user/dashboard"; // Chuyển hướng về dashboard
+    // Xử lý cập nhật người dùng
+    @PostMapping("/{id}/edit")
+    public String updateUser(@PathVariable Long id, @ModelAttribute User user) {
+        // Đảm bảo userId không bị thay đổi khi cập nhật
+        user.setUserId(id);
+        userService.updateUser(user);  // Cập nhật người dùng trong database
+        return "redirect:/admin/users";  // Quay lại danh sách người dùng
     }
 
-    // Xóa người dùng
-    @GetMapping("/delete/{id}")
+    // Xử lý xóa người dùng
+    @GetMapping("/{id}/delete")
     public String deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id); // Xóa người dùng khỏi cơ sở dữ liệu
-        return "redirect:/admin/user/dashboard"; // Chuyển hướng về dashboard
+        userService.deleteUser(id);  // Xóa người dùng khỏi database
+        return "redirect:/admin/users";  // Quay lại danh sách người dùng
     }
 }

@@ -28,17 +28,15 @@ public class AuthController {
             model.addAttribute("error", "Email đã tồn tại!");
             return "register";
         }
-        // Đăng ký thành công, chuyển đến trang đăng nhập
         return "redirect:/login";
     }
-
-    // Trang hiển thị form đăng nhập
+    // Trang hiển thị form đăng nhập (GET)
     @GetMapping("/login")
     public String showLoginForm(Model model) {
         return "login"; // Tên file login.html
     }
 
-    // Xử lý khi người dùng submit form đăng nhập
+    // Xử lý khi người dùng submit form đăng nhập (POST)
     @PostMapping("/login")
     public String processLogin(@RequestParam String email,
                                @RequestParam String password,
@@ -46,9 +44,17 @@ public class AuthController {
         User user = userService.login(email, password);
         if (user == null) {
             model.addAttribute("error", "Email hoặc mật khẩu sai!");
-            return "login";
+            return "login"; // Quay lại trang login và hiển thị lỗi
         }
-        // Đăng nhập thành công, chuyển hướng về home
-        return "redirect:/home";
+
+        // Kiểm tra vai trò của người dùng
+        if ("ADMIN".equals(user.getRole())) {
+            // Nếu là admin, chuyển đến trang dashboard
+            return "redirect:/admin/dashboard";
+        } else {
+            // Nếu là người dùng bình thường, chuyển đến trang home
+            return "redirect:/home";
+        }
     }
 }
+

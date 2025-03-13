@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Chỉnh Sửa Đơn Hàng</title>
+</head>
+<body>
+<h1>Chỉnh Sửa Đơn Hàng</h1>
+<form th:action="@{/admin/orders/{id}/edit(id=${order.orderId})}" method="post">
+    <p>Trạng Thái: <input type="text" th:field="*{status}" required/></p>
+    <p>Tổng Tiền: <input type="number" th:field="*{total}" required/></p>
+    <button type="submit">Cập Nhật Đơn Hàng</button>
+</form>
+</body>
+</html>

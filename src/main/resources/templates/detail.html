@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Chi Tiết Đơn Hàng</title>
+</head>
+<body>
+<h1>Chi Tiết Đơn Hàng</h1>
+<p>ID Đơn Hàng: <span th:text="${order.orderId}"></span></p>
+<p>Người Dùng: <span th:text="${order.user.fullName}"></span></p>
+<p>Trạng Thái: <span th:text="${order.status}"></span></p>
+<p>Tổng Tiền: <span th:text="${order.total}"></span></p>
+</body>
+</html>

@@ -7,10 +7,11 @@
 <body>
 <h1>Đăng Nhập</h1>
 <form th:action="@{/login}" method="post">
-    <p>Email: <input type="email" name="email" /></p>
-    <p>Mật khẩu: <input type="password" name="password" /></p>
+    <p>Email: <input type="email" name="email" required/></p>
+    <p>Mật khẩu: <input type="password" name="password" required/></p>
     <button type="submit">Đăng Nhập</button>
 </form>
-<p th:text="${error}"></p>
+<p style="color:red;" th:if="${error}" th:text="${error}"></p>
+<p>Chưa có tài khoản? <a href="/register">Đăng ký</a></p>
 </body>
 </html>

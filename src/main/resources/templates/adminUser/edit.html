@@ -2,25 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Đăng Ký</title>
+    <title>Chỉnh sửa Người dùng</title>
 </head>
 <body>
-<h1>Đăng Ký</h1>
-<form th:action="@{/register}" method="post" th:object="${user}">
+<h1>Chỉnh sửa Người dùng</h1>
+<form th:action="@{/admin/users/{id}/edit(id=${user.userId})}" method="post">
     <p>Họ và tên: <input type="text" th:field="*{fullName}" required/></p>
     <p>Email: <input type="email" th:field="*{email}" required/></p>
-    <p>Mật khẩu: <input type="password" th:field="*{password}" required/></p>
     <p>Số điện thoại: <input type="text" th:field="*{phoneNumber}" required/></p>
     <p>Địa chỉ: <input type="text" th:field="*{address}" required/></p>
-    <p>Vai trò:
+    <p>Vai trò: 
         <select th:field="*{role}">
-            <option value="User">User</option>
-            <option value="ADMIN">Admin</option>
+            <option value="User" th:selected="*{role} == 'User'">User</option>
+            <option value="Admin" th:selected="*{role} == 'Admin'">Admin</option>
         </select>
     </p>
-    <button type="submit">Đăng Ký</button>
+    <button type="submit">Cập nhật</button>
 </form>
-<p style="color:red;" th:if="${error}" th:text="${error}"></p>
-<p>Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+
+<p><a href="/admin/users">Quay lại danh sách người dùng</a></p>
 </body>
 </html>
