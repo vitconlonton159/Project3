@@ -64,23 +64,32 @@
    </div>
   </div>
   <script>
-    fetch('/api/products')  // Gọi API từ backend
-        .then(response => response.json())  // Chuyển đổi dữ liệu từ JSON
-        .then(data => {
-            const productList = document.getElementById("product-list");
-            data.forEach(product => {
-                let productItem = document.createElement("div");
-                productItem.classList.add("bg-white", "p-4", "shadow-md");
-                productItem.innerHTML = `
-                    <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-40 object-cover mb-2" />
-                    <h3 class="text-sm font-semibold">${product.name}</h3>
-                    <p class="text-red-500">${product.price} đ</p>
-                `;
-                productList.appendChild(productItem);
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
+    fetch('/admin/api/products')
+    // Gọi API từ backend
+    .then(response => response.json())  // Chuyển đổi dữ liệu từ JSON
+    .then(data => {
+        const productList = document.getElementById("product-list");
+        data.forEach(product => {
+            let productItem = document.createElement("div");
+            productItem.classList.add("bg-white", "p-4", "shadow-md");
+            productItem.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-40 object-cover mb-2" />
+                <h3 class="text-sm font-semibold">${product.name}</h3>
+                <p class="text-red-500">${product.price} đ</p>
+                <a href="/order/create?userId=${getUserId()}&productId=${product.productId}&quantity=1" class="px-4 py-2 bg-blue-500 text-white rounded">Mua</a>
+            `;
+            productList.appendChild(productItem);
+        });
+    })
+    .catch(error => console.error('Error fetching products:', error));
+
+    // Hàm giả định lấy userId từ session hoặc dữ liệu khác
+    function getUserId() {
+        // Bạn có thể lấy userId từ session, cookies, hoặc gửi nó từ server vào JavaScript
+        return 1;  // Thay thế với giá trị thực tế của userId
+    }
 </script>
+
 
  </body>
 </html>

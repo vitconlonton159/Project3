@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.PrePersist;
@@ -13,9 +15,19 @@ import jakarta.persistence.PrePersist;
 
 @Entity
 public class User {
+	
+	 
+	   
+
+	    @OneToMany(mappedBy = "user")
+	    private List<CartItem> cartItems;  // Mối quan hệ một người dùng có nhiều CartItem
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    @Column(name = "user_id")  // Cần phải có ánh xạ tới cột user_id trong DB
+
+    
     private Long userId;
 
     @Column(nullable = false)

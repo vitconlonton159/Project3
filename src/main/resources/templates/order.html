@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Chi Tiết Đơn Hàng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-6xl mx-auto p-4">
+        <div class="bg-white p-4 rounded-lg shadow-md flex flex-col md:flex-row">
+            <!-- Hình ảnh sản phẩm -->
+            <div class="md:w-1/2 p-4">
+                <img class="w-full rounded-lg" height="400" th:src="@{${product.imageUrl}}" alt="Product Image" width="400"/>
+            </div>
+
+            <div class="md:w-1/2 p-4">
+                <h1 class="text-xl font-bold">
+                    <span th:text="${product.name}"></span>
+                </h1>
+                <p class="text-red-600 text-2xl font-bold mt-2">
+                    <span th:text="${product.price}"></span> ₫
+                </p>
+                <p class="text-gray-700 mt-4" th:text="${product.description}"></p>
+
+                <!-- Số lượng sản phẩm -->
+                <div class="mt-4">
+                    <label class="block text-gray-700" for="quantity">
+                        Số Lượng
+                    </label>
+                    <input class="border border-gray-300 rounded p-2 w-full" type="number" id="quantity" name="quantity" th:value="${quantity}" min="1"/>
+                </div>
+
+                <!-- Nút thêm vào giỏ hàng và thanh toán -->
+                <div class="mt-6">
+                    <form action="/order/create" method="post">
+                        <input type="hidden" name="userId" th:value="${user.userId}"/>
+                        <input type="hidden" name="productId" th:value="${product.productId}"/>
+                        <input type="hidden" name="quantity" th:value="${quantity}"/>
+
+                        <button type="submit" class="bg-green-500 text-white w-full py-2 rounded mt-4">
+                            Thêm Vào Giỏ Hàng
+                        </button>
+                    </form>
+                    <!-- Nút Thanh Toán -->
+                    <a th:href="@{/order/pay(userId=${user.userId}, productId=${product.productId}, quantity=${quantity})}" class="bg-orange-500 text-white w-full py-2 rounded mt-2">
+    						Thanh toán
+					</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 flex flex-col md:flex-row">
+            <div class="bg-white p-4 rounded-lg shadow-md md:w-1/2 md:mr-2">
+                <h2 class="text-lg font-bold text-green-600">
+                    HỖ TRỢ
+                </h2>
+                <p>
+                    Hotline: 091.550.8989
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md md:w-1/2 md:ml-2 mt-4 md:mt-0">
+                <h2 class="text-lg font-bold text-green-600">
+                    CAM KẾT
+                </h2>
+                <ul class="list-disc pl-5 mt-2 text-gray-700">
+                    <li>Sản phẩm đảm bảo chất lượng</li>
+                    <li>Giao hàng trên toàn quốc</li>
+                    <li>Lỗi nhà sản xuất 1 đổi 1 trong vòng 7 ngày đầu tiên</li>
+                    <li>Thứ 2 – CN: 08:00 – 17:00. Hotline: 091.550.8989</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

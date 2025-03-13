@@ -1,5 +1,6 @@
 package com.foodstore.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,12 +13,26 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id") // Đảm bảo rằng cột trong DB là product_id
+
     private Long productId;
     private String name;
     private String description;
     private Double price;
     private String imageUrl;
     private String category;
+    
+    // Constructor không tham số (Dành cho JPA)
+    public Product() {}
+
+    // Constructor với tham số
+    public Product(String name, String description, Double price, String imageUrl, String category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.category = category;
+    }
     
     // Getters và Setters
     public Long getProductId() {

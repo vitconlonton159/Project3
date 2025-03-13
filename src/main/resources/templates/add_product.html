@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Thêm Sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h2 class="text-xl font-bold mb-4">Thêm Sản phẩm</h2>
+        <form action="/admin/product/add" method="POST">
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-semibold">Tên Sản phẩm</label>
+                <input type="text" id="name" name="name" class="w-full p-2 border" required/>
+            </div>
+            <div class="mb-4">
+                <label for="price" class="block text-sm font-semibold">Giá</label>
+                <input type="number" id="price" name="price" class="w-full p-2 border" required/>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-semibold">Mô tả</label>
+                <textarea id="description" name="description" class="w-full p-2 border" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="imageUrl" class="block text-sm font-semibold">URL Hình ảnh</label>
+                <input type="url" id="imageUrl" name="imageUrl" class="w-full p-2 border" required/>
+            </div>
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-semibold">Danh mục</label>
+                <input type="text" id="category" name="category" class="w-full p-2 border" required/>
+            </div>
+            <button type="submit" class="bg-green-500 text-white p-2 rounded">Thêm Sản phẩm</button>
+        </form>
+    </div>
+</body>
+</html>

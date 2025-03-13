@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+</head>
+<body>
+    <h1>Giỏ Hàng</h1>
+    <ul>
+        <li th:each="cartItem : ${cartItems}">
+            <span th:text="${cartItem.product.name}"></span> 
+            <span th:text="${cartItem.quantity}"></span> 
+            <span th:text="${cartItem.product.price}"></span> 
+            <a th:href="@{/cart/remove/{id}(id=${cartItem.cartItemId})}">Xóa</a>
+        </li>
+    </ul>
+    <a href="/order/create?userId=1">Tạo đơn hàng</a>
+</body>
+</html>

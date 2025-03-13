@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Thanh Toán</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-6xl mx-auto p-4">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <h1 class="text-3xl font-bold">Thanh Toán Đơn Hàng</h1>
+
+            <!-- Thông tin sản phẩm -->
+            <div class="mt-6">
+                <p class="font-semibold">Sản phẩm: <span th:text="${product.name}"></span></p>
+                <p class="font-semibold">Giá: <span th:text="${product.price}"></span> ₫</p>
+                <p class="font-semibold">Số lượng: <span th:text="${quantity}"></span></p>
+                <p class="font-semibold">Tổng Tiền: <span th:text="${total}"></span> ₫</p>
+            </div>
+
+            <!-- Form thanh toán -->
+            <div class="mt-6">
+                <form action="/order/complete" method="post">
+                    <input type="hidden" name="userId" th:value="${user.userId}"/>
+                    <input type="hidden" name="productId" th:value="${product.productId}"/>
+                    <input type="hidden" name="quantity" th:value="${quantity}"/>
+                    <input type="hidden" name="total" th:value="${total}"/>
+
+                    <!-- Các trường thanh toán -->
+                    <div class="mt-4">
+                        <label class="block text-gray-700" for="cardNumber">Số thẻ tín dụng</label>
+                        <input class="border border-gray-300 rounded p-2 w-full" type="text" id="cardNumber" name="cardNumber" required/>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700" for="expiryDate">Ngày hết hạn</label>
+                        <input class="border border-gray-300 rounded p-2 w-full" type="text" id="expiryDate" name="expiryDate" required/>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700" for="cvv">CVV</label>
+                        <input class="border border-gray-300 rounded p-2 w-full" type="text" id="cvv" name="cvv" required/>
+                    </div>
+
+                    <button type="submit" class="bg-green-500 text-white w-full py-2 rounded mt-4">
+                        Xác Nhận Thanh Toán
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
